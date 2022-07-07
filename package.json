@@ -8,15 +8,17 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc && browserify ./dist/main.js -o ./dist/bundle/main.js"
   },
   "author": "thilitium",
   "license": "ISC",
   "devDependencies": {
+    "@types/lodash": "^4.14.182",
     "@types/node": "^18.0.1",
-    "@types/screeps": "^3.3.0"
+    "@types/screeps": "^3.3.0",
+    "lodash": "^4.17.21"
   },
   "dependencies": {
-    "thilitium-screeps-lib": "^1.0.0"
+    "thilitium-screeps-lib": "^1.2.0"
   }
 }
