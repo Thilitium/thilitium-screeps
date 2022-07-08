@@ -1,7 +1,7 @@
 import {Behaviors, Creeps} from 'thilitium-screeps-lib';
 import * as _ from 'lodash'
 
-let environment = 'dev';
+const environment = 'dev';
 /** @type {string[]} */
 Memory.tombstonesTakenCareOfIds = Memory.tombstonesTakenCareOfIds || [];
 
@@ -30,18 +30,25 @@ clearMemory();
 //console.log(spawner.room.energyCapacityAvailable);
 //structureSpawner.checkNumberOfCreepsAndSpawn(spawner, 'harvester', 5, 2);
 // checkNumberOfCreepsAndSpawn(spawner: StructureSpawn, role: string, limitOfWorker: number, level: number): void;
-Behaviors.Structures.Spawn.checkNumberOfCreepsAndSpawn(spawner, 'miner', 3, 2);
-Behaviors.Structures.Spawn.checkNumberOfCreepsAndSpawn(spawner, 'transporter', 2, 2);
-Behaviors.Structures.Spawn.checkNumberOfCreepsAndSpawn(spawner, 'reparator', 1, 2);
-Behaviors.Structures.Spawn.checkNumberOfCreepsAndSpawn(spawner, 'builder', 3, 2);
-Behaviors.Structures.Spawn.checkNumberOfCreepsAndSpawn(spawner, 'upgrader', 4, 2);
+const maxEnergyToAllocate = spawner.room.energyCapacityAvailable - 50;
+Behaviors.Structures.Spawn.checkNumberOfCreepsAndSpawn(
+    spawner, 'miner', 7, Creeps.Miner.bodyParts(maxEnergyToAllocate)
+);
+
+Behaviors.Structures.Spawn.checkNumberOfCreepsAndSpawn(
+    spawner, 'transporter', 5, Creeps.Transporter.bodyParts(maxEnergyToAllocate)
+);
+Behaviors.Structures.Spawn.checkNumberOfCreepsAndSpawn(spawner, 'reparator', 2, 5);
+
+Behaviors.Structures.Spawn.checkNumberOfCreepsAndSpawn(spawner, 'builder', 4, 5);
+Behaviors.Structures.Spawn.checkNumberOfCreepsAndSpawn(spawner, 'upgrader', 5, 5);
 
 /*structureSpawner.checkNumberOfCreepsAndSpawn(spawner, 'harvester', 2, 2);
 structureSpawner.checkNumberOfCreepsAndSpawn(spawner, 'builder', 6, 2);
 structureSpawner.checkNumberOfCreepsAndSpawn(spawner, 'upgrader', 10, 2);*/
 
 
-for (let name in Game.creeps) {
+for (const name in Game.creeps) {
     const creep = Game.creeps[name];
 
     /*if (creep.memory.role === 'harvester') {
@@ -70,7 +77,7 @@ for (let name in Game.creeps) {
 }
 
 function clearMemory() {
-    for (var i in Memory.creeps) {
+    for (const i in Memory.creeps) {
         if (!Game.creeps[i]) {
             const deadCreepRole = Memory.creeps[i].role;
             const remainingCreepsInSameRole = _.filter(Game.creeps, c => c.memory.role === deadCreepRole).length;

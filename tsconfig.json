@@ -31,11 +31,10 @@
     "noUnusedParameters": true // Report errors on unused parameters in functions
   },
   "include": [
-    "./src/**/*.ts",
-    "node_modules/thilitium-screeps-lib/**/*.ts"
+    "./src/main.ts"
   ],
   "exclude": [
-    "dist",
-    //"node_modules"
+    "./dist/**/*",
+    "./node_modules/**/*"
   ]
 }

@@ -8,17 +8,23 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && browserify ./dist/main.js -o ./dist/bundle/main.js"
+    "build": "tsc --build --force && browserify ./dist/main.js -o ./dist/bundle/main.js",
+    "lint": "eslint --fix src/** --ext *.ts"
   },
   "author": "thilitium",
   "license": "ISC",
   "devDependencies": {
     "@types/lodash": "^4.14.182",
-    "@types/node": "^18.0.1",
+    "@types/node": "^18.0.3",
     "@types/screeps": "^3.3.0",
-    "lodash": "^4.17.21"
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "eslint": "^8.19.0",
+    "lodash": "^4.17.21",
+    "prettier": "^2.7.1"
   },
   "dependencies": {
-    "thilitium-screeps-lib": "^1.2.0"
+    "thilitium-screeps-lib": "^1.2.1",
+    "typescript": "^4.7.4"
   }
 }
